@@ -1,0 +1,20 @@
+using SGE.Aplicacion.Autorizacion;
+using SGE.Aplicacion.Expedientes.DTOS;
+using SGE.Dominio.Expedientes;
+
+namespace SGE.Aplicacion.Expedientes.UseCases;
+
+public class ModificarCaratulaExpedienteUseCase(IAutorizacionService autorizacionService, IExpedienteRepository repository, Dominio.Comun.ITimeProvider timeProvider)
+{
+    public ModificarCaratulaExpedienteResponse Ejecutar(ModificarCaratulaExpedienteRequest request)
+    {
+        if (!autorizacionService.PoseeElPermiso(request.usuarioId, PermisoEnum.ExpedienteModificacion))
+            throw new AutorizacionException("No posee los permisos necesarios");
+        CaratulaExp nuevaCaratula = new CaratulaExp(request.caratulaString);
+        Expediente exp = repository.ObtenerExpPorId(request.expId)?? throw new AplicacionException("Expediente no encontrado");
+        exp.ModificarCaratula(nuevaCaratula, request.usuarioId, timeProvider.Now);
+        repository.EliminarExpediente(request.expId);
+        repository.AgregarExpediente(exp);
+        return new ModificarCaratulaExpedienteResponse();
+    }
+}

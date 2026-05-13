@@ -1,0 +1,17 @@
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/bin/Debug/net10.0/SGE.Infraestructura.deps.json
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/bin/Debug/net10.0/SGE.Infraestructura.dll
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/bin/Debug/net10.0/SGE.Infraestructura.pdb
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/bin/Debug/net10.0/SGE.Aplicacion.dll
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/bin/Debug/net10.0/SGE.Dominio.dll
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/bin/Debug/net10.0/SGE.Aplicacion.pdb
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/bin/Debug/net10.0/SGE.Dominio.pdb
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/obj/Debug/net10.0/SGE.Infraestructura.csproj.AssemblyReference.cache
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/obj/Debug/net10.0/SGE.Infraestructura.GeneratedMSBuildEditorConfig.editorconfig
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/obj/Debug/net10.0/SGE.Infraestructura.AssemblyInfoInputs.cache
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/obj/Debug/net10.0/SGE.Infraestructura.AssemblyInfo.cs
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/obj/Debug/net10.0/SGE.Infraestructura.csproj.CoreCompileInputs.cache
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/obj/Debug/net10.0/SGE.Infr.0FEB7F8C.Up2Date
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/obj/Debug/net10.0/SGE.Infraestructura.dll
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/obj/Debug/net10.0/refint/SGE.Infraestructura.dll
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/obj/Debug/net10.0/SGE.Infraestructura.pdb
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/obj/Debug/net10.0/ref/SGE.Infraestructura.dll

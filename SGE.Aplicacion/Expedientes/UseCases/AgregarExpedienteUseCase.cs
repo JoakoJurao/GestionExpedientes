@@ -1,0 +1,18 @@
+using SGE.Aplicacion.Autorizacion;
+using SGE.Aplicacion.Expedientes.DTOS;
+using SGE.Dominio.Expedientes;
+
+namespace SGE.Aplicacion.Expedientes.UseCases;
+
+public class AgregarExpedienteUseCase(IAutorizacionService autorizacionService, IExpedienteRepository repository, Dominio.Comun.ITimeProvider timeProvider)
+{
+    public AgregarExpedienteResponse Ejecutar(AgregarExpedienteRequest request)
+    {
+        if (!autorizacionService.PoseeElPermiso(request.usuarioId, PermisoEnum.ExpedienteAlta))
+            throw new AutorizacionException("No posee los permisos necesarios");
+        CaratulaExp caratula = new CaratulaExp(request.caratulaString);
+        Expediente NuevoExpediente = Expediente.CrearExpediente(caratula,request.usuarioId, timeProvider.Now);
+        repository.AgregarExpediente(NuevoExpediente);
+        return new AgregarExpedienteResponse(NuevoExpediente.Id);
+    }
+}
