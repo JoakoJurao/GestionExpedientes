@@ -15,3 +15,4 @@
 /home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/obj/Debug/net10.0/refint/SGE.Infraestructura.dll
 /home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/obj/Debug/net10.0/SGE.Infraestructura.pdb
 /home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/obj/Debug/net10.0/ref/SGE.Infraestructura.dll
+/home/jjurao/Desktop/seminario/SGE/SGE.Infraestructura/obj/Debug/net10.0/SGE.Infraestructura.sourcelink.json

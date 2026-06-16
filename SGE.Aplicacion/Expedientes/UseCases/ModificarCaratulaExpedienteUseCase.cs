@@ -11,7 +11,7 @@ public class ModificarCaratulaExpedienteUseCase(IAutorizacionService autorizacio
         if (!autorizacionService.PoseeElPermiso(request.usuarioId, PermisoEnum.ExpedienteModificacion))
             throw new AutorizacionException("No posee los permisos necesarios");
         CaratulaExp nuevaCaratula = new CaratulaExp(request.caratulaString);
-        Expediente exp = repository.ObtenerExpPorId(request.expId)?? throw new AplicacionException("Expediente no encontrado");
+        Expediente exp = repository.ObtenerExpPorId(request.expId) ?? throw new EntidadNoEncontradaException("Expediente");
         exp.ModificarCaratula(nuevaCaratula, request.usuarioId, timeProvider.Now);
         repository.EliminarExpediente(request.expId);
         repository.AgregarExpediente(exp);

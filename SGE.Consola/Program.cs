@@ -43,8 +43,8 @@ catch (Exception ex) { Console.WriteLine("Error inesperado: " + ex.Message); }
 Console.WriteLine("Listando expedientes:");
 try
 {
-    foreach (var exp_n in obtenerTodosExp.Ejecutar().expedientes)
-        Console.WriteLine("  " + exp_n.Id + " - " + exp_n.Caratula.Contenido + " - Estado: " + exp_n.Estado);
+    foreach (var exp_n in obtenerTodosExp.Ejecutar().Expedientes)
+        Console.WriteLine("  " + exp_n.Id + " - " + exp_n.Caratula + " - Estado: " + exp_n.Estado);
 }
 catch (Exception ex) { Console.WriteLine("Error: " + ex.Message); }
 

@@ -11,7 +11,7 @@ public class EliminarExpedienteUseCase(IAutorizacionService autorizacionService,
     {
         if (!autorizacionService.PoseeElPermiso(request.usuarioId, PermisoEnum.ExpedienteBaja))
             throw new AutorizacionException("No posee los permisos necesarios");
-        if (repository.ObtenerExpPorId(request.expId) is null) throw new AplicacionException("Expediente no encontrado");
+        if (repository.ObtenerExpPorId(request.expId) is null) throw new EntidadNoEncontradaException("Expediente");
         foreach (Tramite t in repositoryTramite.ObtenerTramitesPorExpedienteId(request.expId))
         {
             repositoryTramite.EliminarTramite(t.Id);

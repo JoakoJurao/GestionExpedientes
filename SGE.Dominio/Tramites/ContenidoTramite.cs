@@ -8,7 +8,7 @@ public record class ContenidoTramite
 
     public ContenidoTramite(string texto)
     {
-        if (texto.IsWhiteSpace()) throw new DominioException("Contenido en blanco.");
+        if (string.IsNullOrWhiteSpace(texto)) throw new DominioException("Contenido en blanco.");
         Texto = texto;
     }
 }

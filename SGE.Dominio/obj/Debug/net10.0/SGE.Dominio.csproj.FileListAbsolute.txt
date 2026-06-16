@@ -9,3 +9,4 @@
 /home/jjurao/Desktop/seminario/SGE/SGE.Dominio/obj/Debug/net10.0/refint/SGE.Dominio.dll
 /home/jjurao/Desktop/seminario/SGE/SGE.Dominio/obj/Debug/net10.0/SGE.Dominio.pdb
 /home/jjurao/Desktop/seminario/SGE/SGE.Dominio/obj/Debug/net10.0/ref/SGE.Dominio.dll
+/home/jjurao/Desktop/seminario/SGE/SGE.Dominio/obj/Debug/net10.0/SGE.Dominio.sourcelink.json

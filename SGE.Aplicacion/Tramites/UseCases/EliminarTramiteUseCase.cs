@@ -11,7 +11,7 @@ public class EliminarTramiteUseCase(IAutorizacionService autorizacionService, IT
     {
         if (!autorizacionService.PoseeElPermiso(request.usuarioId, PermisoEnum.TramiteBaja))
             throw new AutorizacionException("No posee los permisos necesarios");
-        Tramite tramite = repository.ObtenerTramitePorId(request.tramiteId) ?? throw new AplicacionException("Tramite no encontrado");
+        Tramite tramite = repository.ObtenerTramitePorId(request.tramiteId) ?? throw new EntidadNoEncontradaException("Tramite");
         repository.EliminarTramite(request.tramiteId);
         ActualizacionEstadoExpedienteService a = new ActualizacionEstadoExpedienteService(repository_exp, repository, timeProvider);
         a.Ejecutar(tramite.ExpedienteId, request.usuarioId);

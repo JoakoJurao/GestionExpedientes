@@ -11,7 +11,7 @@ public class CambiarEstadoExpedienteUseCase(IAutorizacionService autorizacionSer
     {
         if (!autorizacionService.PoseeElPermiso(request.usuarioId, PermisoEnum.ExpedienteModificacion))
             throw new AutorizacionException("No posee los permisos necesarios");
-        Expediente exp = repository.ObtenerExpPorId(request.expId) ?? throw new AplicacionException("Expediente no encontrado");
+        Expediente exp = repository.ObtenerExpPorId(request.expId) ?? throw new EntidadNoEncontradaException("Expediente");
         exp.CambiarEstado(request.estado, request.usuarioId, timeProvider.Now);
         repository.EliminarExpediente(request.expId);
         repository.AgregarExpediente(exp);
