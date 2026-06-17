@@ -6,8 +6,9 @@ public class ObtenerTodosExpUseCase(IExpedienteRepository repository)
 {
     public ObtenerTodosExpResponse Ejecutar()
     {
-        var expedientes = repository.ObtenerTodosExp()
-            .Select(e => new ExpedienteDTO(e.Id, e.Caratula.Contenido, e.Estado, e.FechaCreacion, e.FechaUltimaModificacion));
+        var expedientes = new List<ExpedienteDTO>();
+        foreach (var e in repository.ObtenerTodosExp())
+            expedientes.Add(new ExpedienteDTO(e.Id, e.Caratula.Contenido, e.Estado, e.FechaCreacion, e.FechaUltimaModificacion));
         return new ObtenerTodosExpResponse(expedientes);
     }
 }

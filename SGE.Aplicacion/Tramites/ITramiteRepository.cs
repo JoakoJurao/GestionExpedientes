@@ -9,4 +9,5 @@ public interface ITramiteRepository
     Tramite? ObtenerTramitePorId(Guid id);
     void EliminarTramite(Guid id);
     IEnumerable<Tramite> ObtenerTramitesPorExpedienteId(Guid expId);
+    Tramite? ObtenerUltimoTramiteDeExpediente(Guid expId);
 }

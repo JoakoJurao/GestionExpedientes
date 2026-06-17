@@ -11,9 +11,7 @@ public class ActualizacionEstadoExpedienteService(IExpedienteRepository reposito
     public void Ejecutar(Guid expId, Guid usuarioId)
     {
         Expediente? exp = repository_exp.ObtenerExpPorId(expId) ?? throw new EntidadNoEncontradaException("Expediente");
-        Tramite? ultimo = repository_tramite.ObtenerTramitesPorExpedienteId(expId)
-            .OrderBy(t => t.FechaUltimaModificacion)
-            .LastOrDefault() ?? throw new EntidadNoEncontradaException("Tramite");
+        Tramite? ultimo = repository_tramite.ObtenerUltimoTramiteDeExpediente(expId) ?? throw new EntidadNoEncontradaException("Tramite");
         EtiquetaTramiteEnum? ultimaEtiqueta = ultimo?.Etiqueta;
         exp.ActualizarEstado(ultimaEtiqueta, usuarioId, timeProvider.Now);
         repository_exp.EliminarExpediente(expId);
