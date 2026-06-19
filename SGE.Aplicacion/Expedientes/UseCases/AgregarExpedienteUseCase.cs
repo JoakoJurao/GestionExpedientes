@@ -1,6 +1,7 @@
 using SGE.Aplicacion.Autorizacion;
 using SGE.Aplicacion.Expedientes.DTOS;
 using SGE.Dominio.Expedientes;
+using SGE.Dominio.Usuarios;
 
 namespace SGE.Aplicacion.Expedientes.UseCases;
 
@@ -11,7 +12,7 @@ public class AgregarExpedienteUseCase(IAutorizacionService autorizacionService, 
         if (!autorizacionService.PoseeElPermiso(request.usuarioId, PermisoEnum.ExpedienteAlta))
             throw new AutorizacionException("No posee los permisos necesarios");
         CaratulaExp caratula = new CaratulaExp(request.caratulaString);
-        Expediente NuevoExpediente = Expediente.CrearExpediente(caratula,request.usuarioId, timeProvider.Now);
+        Expediente NuevoExpediente = new Expediente(caratula, request.usuarioId, timeProvider.Now);
         repository.AgregarExpediente(NuevoExpediente);
         return new AgregarExpedienteResponse(NuevoExpediente.Id);
     }

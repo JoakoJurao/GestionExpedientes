@@ -3,6 +3,7 @@ using SGE.Aplicacion.Expedientes;
 using SGE.Aplicacion.Tramites.DTOS;
 using SGE.Dominio.Comun;
 using SGE.Dominio.Tramites;
+using SGE.Dominio.Usuarios;
 
 namespace SGE.Aplicacion.Tramites.UseCases;
 

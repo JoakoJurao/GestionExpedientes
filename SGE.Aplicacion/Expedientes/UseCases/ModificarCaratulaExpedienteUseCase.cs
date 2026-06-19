@@ -1,6 +1,7 @@
 using SGE.Aplicacion.Autorizacion;
 using SGE.Aplicacion.Expedientes.DTOS;
 using SGE.Dominio.Expedientes;
+using SGE.Dominio.Usuarios;
 
 namespace SGE.Aplicacion.Expedientes.UseCases;
 
