@@ -13,6 +13,7 @@ public class Expediente
 
     public Expediente(CaratulaExp caratula, Guid usuario, DateTime ahora)
     {
+        Id = Guid.NewGuid();
         if (usuario == Guid.Empty) throw new DominioException("El id del usuario es invalido.");
         Caratula = caratula ?? throw new DominioException("La caratula no puede ser nula.");
         UsuarioUltimoCambio = usuario;

@@ -9,7 +9,6 @@ public class Usuario
     public string CorreoElectronico { get; private set; } = null!;
     public string ContrasenaHash { get; private set; } = "";
     public bool EsAdministrador { get; private set; }
-
     public List<PermisoEnum> Permisos { get; private set; } = [];
 
     public Usuario(string nombre, string correoElectronico, string contrasenaHash, bool esAdministrador, List<PermisoEnum>? permisos = null)
@@ -31,6 +30,27 @@ public class Usuario
         if (permisos is not null)
             Permisos = permisos;
     }
+    public void ModificarNombre(string nuevoNombre)
+    {
+        if (string.IsNullOrWhiteSpace(nuevoNombre))
+            throw new DominioException("El nombre del usuario no puede estar vacío.");
+        Nombre = nuevoNombre;
+    }
+
+    public void ModificarCorreo(string nuevoCorreo)
+    {
+        if (string.IsNullOrWhiteSpace(nuevoCorreo))
+            throw new DominioException("El correo electrónico del usuario es obligatorio.");
+        CorreoElectronico = nuevoCorreo;
+    }
+
+    public void ModificarContrasena(string nuevoHash)
+    {
+        if (string.IsNullOrWhiteSpace(nuevoHash))
+            throw new DominioException("La contraseña del usuario no puede estar vacía.");
+        ContrasenaHash = nuevoHash;
+    }
+
     public void AgregarPermiso(PermisoEnum nuevoPermiso)
     {
         if (!Permisos.Contains(nuevoPermiso))

@@ -1,11 +1,17 @@
 using SGE.Aplicacion.Autorizacion;
 using SGE.Aplicacion.Expedientes.DTOS;
+using SGE.Aplicacion.Interfaces;
 using SGE.Dominio.Expedientes;
 using SGE.Dominio.Usuarios;
 
 namespace SGE.Aplicacion.Expedientes.UseCases;
 
-public class ModificarCaratulaExpedienteUseCase(IAutorizacionService autorizacionService, IExpedienteRepository repository, Dominio.Comun.ITimeProvider timeProvider)
+public class ModificarCaratulaExpedienteUseCase(
+    IAutorizacionService autorizacionService,
+    IExpedienteRepository repository,
+    Dominio.Comun.ITimeProvider timeProvider,
+    IUnidadDeTrabajo udt
+    )
 {
     public ModificarCaratulaExpedienteResponse Ejecutar(ModificarCaratulaExpedienteRequest request)
     {
@@ -14,8 +20,7 @@ public class ModificarCaratulaExpedienteUseCase(IAutorizacionService autorizacio
         CaratulaExp nuevaCaratula = new CaratulaExp(request.caratulaString);
         Expediente exp = repository.ObtenerExpPorId(request.expId) ?? throw new EntidadNoEncontradaException("Expediente");
         exp.ModificarCaratula(nuevaCaratula, request.usuarioId, timeProvider.Now);
-        repository.EliminarExpediente(request.expId);
-        repository.AgregarExpediente(exp);
+        udt.Guardar();
         return new ModificarCaratulaExpedienteResponse();
     }
 }

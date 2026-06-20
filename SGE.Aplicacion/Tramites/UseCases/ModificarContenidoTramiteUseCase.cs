@@ -1,5 +1,5 @@
 using SGE.Aplicacion.Autorizacion;
-using SGE.Aplicacion.Expedientes;
+using SGE.Aplicacion.Interfaces;
 using SGE.Aplicacion.Tramites.DTOS;
 using SGE.Dominio.Comun;
 using SGE.Dominio.Tramites;
@@ -7,7 +7,13 @@ using SGE.Dominio.Usuarios;
 
 namespace SGE.Aplicacion.Tramites.UseCases;
 
-public class ModificarContenidoTramiteUseCase(IAutorizacionService autorizacionService, ITramiteRepository repository, ITimeProvider timeProvider, IExpedienteRepository repository_exp)
+public class ModificarContenidoTramiteUseCase(
+    IAutorizacionService autorizacionService,
+    ITramiteRepository repository,
+    ITimeProvider timeProvider,
+    IExpedienteRepository repository_exp,
+    IUnidadDeTrabajo udt
+    )
 {
     public ModificarContenidoTramiteResponse Ejecutar(ModificarContenidoTramiteRequest request)
     {
@@ -17,10 +23,9 @@ public class ModificarContenidoTramiteUseCase(IAutorizacionService autorizacionS
         ContenidoTramite nuevoCont = new ContenidoTramite(request.nuevoContenido);
         t.ModificarContenido(nuevoCont, request.usuarioId, timeProvider.Now);
         t.ModificarEtiqueta(request.nuevaEtiqueta, request.usuarioId, timeProvider.Now);
-        ActualizacionEstadoExpedienteService a = new ActualizacionEstadoExpedienteService(repository_exp, repository,timeProvider);
+        ActualizacionEstadoExpedienteService a = new ActualizacionEstadoExpedienteService(repository_exp, repository, timeProvider);
         a.Ejecutar(t.ExpedienteId, request.usuarioId);
-        repository.EliminarTramite(request.tramiteId);
-        repository.AgregarTramite(t);
+        udt.Guardar();
         return new ModificarContenidoTramiteResponse(t.Id);
     }
 }

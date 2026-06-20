@@ -14,6 +14,7 @@ public class Tramite
 
     public Tramite(Guid expId, EtiquetaTramiteEnum etiqueta, ContenidoTramite contenido, Guid usuario, DateTime ahora)
     {
+        Id = Guid.NewGuid();
         if (expId == Guid.Empty) throw new DominioException("El id del expediente es invalido.");
         if (usuario == Guid.Empty) throw new DominioException("El id del usuario es invalido.");
         if (!Enum.IsDefined(typeof(EtiquetaTramiteEnum), etiqueta)) throw new DominioException("La etiqueta no es valida.");

@@ -1,4 +1,5 @@
 using SGE.Aplicacion.Autorizacion;
+using SGE.Aplicacion.Interfaces;
 using SGE.Aplicacion.Tramites.DTOS;
 using SGE.Dominio.Comun;
 using SGE.Dominio.Tramites;
@@ -6,7 +7,13 @@ using SGE.Dominio.Usuarios;
 
 namespace SGE.Aplicacion.Tramites.UseCases;
 
-public class AgregarTramiteUseCase(IAutorizacionService autorizacionService, ITramiteRepository repository, ITimeProvider timeProvider, Expedientes.IExpedienteRepository repository_exp)
+public class AgregarTramiteUseCase(
+    IAutorizacionService autorizacionService,
+    ITramiteRepository repository,
+    ITimeProvider timeProvider,
+    IExpedienteRepository repository_exp,
+    IUnidadDeTrabajo udt
+    )
 {
     public AgregarTramiteResponse Ejecutar(AgregarTramiteRequest request)
     {
@@ -17,6 +24,7 @@ public class AgregarTramiteUseCase(IAutorizacionService autorizacionService, ITr
         repository.AgregarTramite(tramite);
         ActualizacionEstadoExpedienteService a = new ActualizacionEstadoExpedienteService(repository_exp, repository, timeProvider);
         a.Ejecutar(request.expId, request.usuarioId);
+        udt.Guardar();
         return new AgregarTramiteResponse(tramite.Id);
     }
 }

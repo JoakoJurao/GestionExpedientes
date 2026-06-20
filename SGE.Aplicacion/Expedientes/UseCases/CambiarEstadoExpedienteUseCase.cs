@@ -1,12 +1,17 @@
 using SGE.Aplicacion.Autorizacion;
 using SGE.Aplicacion.Expedientes.DTOS;
+using SGE.Aplicacion.Interfaces;
 using SGE.Dominio.Expedientes;
 using SGE.Dominio.Usuarios;
 
-
 namespace SGE.Aplicacion.Expedientes.UseCases;
 
-public class CambiarEstadoExpedienteUseCase(IAutorizacionService autorizacionService, IExpedienteRepository repository, Dominio.Comun.ITimeProvider timeProvider)
+public class CambiarEstadoExpedienteUseCase(
+    IAutorizacionService autorizacionService,
+    IExpedienteRepository repository,
+    Dominio.Comun.ITimeProvider timeProvider,
+    IUnidadDeTrabajo udt
+    )
 {
     public CambiarEstadoExpedienteResponse Ejecutar(CambiarEstadoExpedienteRequest request)
     {
@@ -14,8 +19,7 @@ public class CambiarEstadoExpedienteUseCase(IAutorizacionService autorizacionSer
             throw new AutorizacionException("No posee los permisos necesarios");
         Expediente exp = repository.ObtenerExpPorId(request.expId) ?? throw new EntidadNoEncontradaException("Expediente");
         exp.CambiarEstado(request.estado, request.usuarioId, timeProvider.Now);
-        repository.EliminarExpediente(request.expId);
-        repository.AgregarExpediente(exp);
+        udt.Guardar();
         return new CambiarEstadoExpedienteResponse();
     }
 }

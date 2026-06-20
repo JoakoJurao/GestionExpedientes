@@ -1,11 +1,17 @@
 using SGE.Aplicacion.Autorizacion;
 using SGE.Aplicacion.Expedientes.DTOS;
+using SGE.Aplicacion.Interfaces;
 using SGE.Dominio.Expedientes;
 using SGE.Dominio.Usuarios;
 
 namespace SGE.Aplicacion.Expedientes.UseCases;
 
-public class AgregarExpedienteUseCase(IAutorizacionService autorizacionService, IExpedienteRepository repository, Dominio.Comun.ITimeProvider timeProvider)
+public class AgregarExpedienteUseCase(
+    IAutorizacionService autorizacionService,
+    IExpedienteRepository repository,
+    Dominio.Comun.ITimeProvider timeProvider,
+    IUnidadDeTrabajo udt
+    )
 {
     public AgregarExpedienteResponse Ejecutar(AgregarExpedienteRequest request)
     {
@@ -14,6 +20,7 @@ public class AgregarExpedienteUseCase(IAutorizacionService autorizacionService, 
         CaratulaExp caratula = new CaratulaExp(request.caratulaString);
         Expediente NuevoExpediente = new Expediente(caratula, request.usuarioId, timeProvider.Now);
         repository.AgregarExpediente(NuevoExpediente);
+        udt.Guardar();
         return new AgregarExpedienteResponse(NuevoExpediente.Id);
     }
 }

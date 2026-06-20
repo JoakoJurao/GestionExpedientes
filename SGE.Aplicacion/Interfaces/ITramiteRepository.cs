@@ -1,6 +1,6 @@
 using SGE.Dominio.Tramites;
 
-namespace SGE.Aplicacion.Tramites;
+namespace SGE.Aplicacion.Interfaces;
 
 public interface ITramiteRepository
 {

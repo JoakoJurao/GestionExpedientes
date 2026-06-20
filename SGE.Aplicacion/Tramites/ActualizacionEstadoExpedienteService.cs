@@ -1,5 +1,5 @@
 using SGE.Aplicacion.Autorizacion;
-using SGE.Aplicacion.Expedientes;
+using SGE.Aplicacion.Interfaces;
 using SGE.Dominio.Comun;
 using SGE.Dominio.Expedientes;
 using SGE.Dominio.Tramites;

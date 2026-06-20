@@ -1,13 +1,16 @@
+using SGE.Aplicacion.Interfaces;
 using SGE.Aplicacion.Tramites.DTOS;
-using SGE.Dominio.Tramites;
 
 namespace SGE.Aplicacion.Tramites.UseCases;
 
-public class ObtenerTramitePorExpedienteIdUseCase(ITramiteRepository repository)
+public class ObtenerTramitePorExpedienteIdUseCase(
+    ITramiteRepository repository
+    )
 {
     public ObtenerTramitePorExpedienteIdResponse Ejecutar(ObtenerTramitePorExpedienteIdRequest request)
     {
-        List<Tramite> tramites = repository.ObtenerTramitesPorExpedienteId(request.expId).ToList();
-        return new ObtenerTramitePorExpedienteIdResponse(tramites);
+        IEnumerable<TramiteDTO> tramitesDto = repository.ObtenerTramitesPorExpedienteId(request.expId)
+            .Select(t => new TramiteDTO(t.Id, t.Etiqueta, t.Contenido.Texto, t.FechaCreacion, t.FechaUltimaModificacion));
+        return new ObtenerTramitePorExpedienteIdResponse(tramitesDto);
     }
 }

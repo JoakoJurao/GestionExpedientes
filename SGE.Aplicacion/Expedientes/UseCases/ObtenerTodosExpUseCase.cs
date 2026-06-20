@@ -1,14 +1,17 @@
 using SGE.Aplicacion.Expedientes.DTOS;
+using SGE.Aplicacion.Interfaces;
+using SGE.Dominio.Expedientes;
 
 namespace SGE.Aplicacion.Expedientes.UseCases;
 
-public class ObtenerTodosExpUseCase(IExpedienteRepository repository)
+public class ObtenerTodosExpUseCase(
+    IExpedienteRepository repository
+    )
 {
     public ObtenerTodosExpResponse Ejecutar()
     {
-        var expedientes = new List<ExpedienteDTO>();
-        foreach (var e in repository.ObtenerTodosExp())
-            expedientes.Add(new ExpedienteDTO(e.Id, e.Caratula.Contenido, e.Estado, e.FechaCreacion, e.FechaUltimaModificacion));
+        var expedientes = repository.ObtenerTodosExp()
+            .Select( e => new ExpedienteDTO(e.Id, e.Caratula.Contenido, e.Estado, e.FechaCreacion, e.FechaUltimaModificacion));
         return new ObtenerTodosExpResponse(expedientes);
     }
 }

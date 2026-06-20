@@ -1,6 +1,6 @@
 using SGE.Dominio.Expedientes;
 
-namespace SGE.Aplicacion.Expedientes;
+namespace SGE.Aplicacion.Interfaces;
 
 public interface IExpedienteRepository
 {
